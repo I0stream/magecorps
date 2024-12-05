@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://dvyaldmbwnv6v"]
+[gd_scene load_steps=26 format=3 uid="uid://dvyaldmbwnv6v"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_ifqao"]
 [ext_resource type="PackedScene" uid="uid://djmy6yqfool4i" path="res://models/castle.tscn" id="3_8hbqx"]
@@ -32,7 +32,7 @@ sky = SubResource("Sky_kb41i")
 ambient_light_source = 3
 ambient_light_color = Color(0.864675, 0.864675, 0.864675, 1)
 ambient_light_sky_contribution = 0.25
-ambient_light_energy = 3.82
+ambient_light_energy = 0.59
 glow_strength = 0.84
 glow_hdr_threshold = 4.0
 glow_map_strength = 0.0
@@ -46,6 +46,10 @@ adjustment_saturation = 1.28
 script = ExtResource("11_m88ox")
 mode = 0
 textures = [[ExtResource("12_r1xs7"), ExtResource("13_v6ku3"), ExtResource("14_alpuo"), ExtResource("15_ae4qt")], [ExtResource("16_vr061"), ExtResource("17_7ouwh"), ExtResource("18_ietrc"), ExtResource("19_q7ncx")]]
+
+[sub_resource type="BoxMesh" id="BoxMesh_hnkfo"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_fpbav"]
 
 [node name="island" type="Node3D"]
 script = ExtResource("1_ifqao")
@@ -76,16 +80,13 @@ transform = Transform3D(15000, 0, 0, 0, 15000, 0, 0, 0, 15000, -79.3234, 46.0707
 transform = Transform3D(0.437539, 0, -0.899199, 0, 1, 0, 0.899199, 0, 0.437539, -352.609, 108.926, 651.891)
 
 [node name="spawn_point" parent="." instance=ExtResource("4_0tsmf")]
-transform = Transform3D(0.437539, 0, -0.899199, 0, 1, 0, 0.899199, 0, 0.437539, -527.425, 104.29, 721.632)
+transform = Transform3D(0.437539, 0, -0.899199, 0, 1, 0, 0.899199, 0, 0.437539, -522.605, 104.29, 715.932)
 
 [node name="target" parent="." instance=ExtResource("36_0kpni")]
-transform = Transform3D(0.4349, -0.862719, -0.258026, -0.176533, 0.199299, -0.963907, 0.883005, 0.464754, -0.0656231, -509.826, 108.669, 685.822)
+transform = Transform3D(0.963517, -0.266557, -0.0241209, 0.0164708, 0.149006, -0.988699, 0.267139, 0.952232, 0.14796, -509.826, 108.669, 685.822)
 
 [node name="xr_gun" parent="." instance=ExtResource("37_gyfj4")]
-transform = Transform3D(0.437539, 0, -0.899199, 0, 1, 0, 0.899199, 0, 0.437539, -519.174, 106.389, 715.792)
-
-[node name="PickableObject" parent="." instance=ExtResource("39_0lppj")]
-transform = Transform3D(0.437539, 0, -0.899199, 0, 1, 0, 0.899199, 0, 0.437539, -519.159, 105.717, 715.575)
+transform = Transform3D(0.437539, 0, -0.899199, 0, 1, 0, 0.899199, 0, 0.437539, -519.086, 105.52, 714.849)
 
 [node name="HTerrain" type="Node3D" parent="."]
 script = ExtResource("9_ga2al")
@@ -102,10 +103,27 @@ custom_globalmap_shader = null
 texture_set = SubResource("Resource_ylyjm")
 render_layers = 1
 cast_shadow = 1
-shader_params/u_ground_uv_scale = 20.0
+shader_params/u_ground_uv_scale = 6.77
 shader_params/u_depth_blending = true
 shader_params/u_triplanar = false
 shader_params/u_tile_reduction = Vector4(0, 0, 0, 0)
+
+[node name="PickableObject" parent="." instance=ExtResource("39_0lppj")]
+transform = Transform3D(0.437539, 0, -0.899199, 0, 1, 0, 0.899199, 0, 0.437539, -519.159, 105.529, 715.756)
+
+[node name="static" type="Node3D" parent="."]
+transform = Transform3D(0.437539, 0, -0.899199, 0, 1, 0, 0.899199, 0, 0.437539, -519.159, 106.213, 715.575)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="static"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.934692, -1.32803, -0.454712)
+layers = 4
+mesh = SubResource("BoxMesh_hnkfo")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="static"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="static/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+shape = SubResource("BoxShape3D_fpbav")
 
 [node name="rings" type="Node3D" parent="."]
 

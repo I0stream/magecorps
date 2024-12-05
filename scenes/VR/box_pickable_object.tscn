@@ -24,17 +24,19 @@ closed_pose = ExtResource("3_ed3fg")
 [node name="PickableObject" instance=ExtResource("1_11uy1")]
 
 [node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(0.49, 0, 0, 0, 0.49, 0, 0, 0, 0.49, 0, 0, 0)
 shape = SubResource("BoxShape3D_rtojq")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." index="1"]
+transform = Transform3D(0.49, 0, 0, 0, 0.49, 0, 0, 0, 0.49, 0, 0, 0)
 mesh = SubResource("BoxMesh_4ts8a")
 
 [node name="GrabPointHandLeft" parent="." index="2" instance=ExtResource("2_yx73e")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.499494, 0, 0.404398)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.288272, 0, 0.160056)
 visible = true
 hand_pose = SubResource("Resource_3gr4i")
 
 [node name="GrabPointHandRight" parent="." index="3" instance=ExtResource("6_1oo2t")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.457231, 0, 0.459243)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.247897, 0, 0.214901)
 visible = true
 hand_pose = SubResource("Resource_v6aib")

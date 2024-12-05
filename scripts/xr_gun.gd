@@ -32,7 +32,6 @@ func handle_two_hand_pivot():
 	# Create a Basis using the look_at method
 	var new_basis = Basis()
 	new_basis = new_basis.looking_at(-direction, Vector3.UP)
-	new_basis.z -= 0.342
 
 	# Update the gun's global transform
 	global_transform = Transform3D(new_basis, pivot_position)
