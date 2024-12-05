@@ -17,6 +17,8 @@ height = 0.5
 [node name="target" type="Node3D"]
 
 [node name="Area3D" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 7
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
 shape = SubResource("CylinderShape3D_5e7d6")

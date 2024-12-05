@@ -1,8 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://boiktqix7ciam"]
+[gd_scene load_steps=19 format=3 uid="uid://boiktqix7ciam"]
 
 [ext_resource type="Script" path="res://scripts/xr_tools_player_controller.gd" id="1_332ai"]
 [ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="2_2t5er"]
-[ext_resource type="PackedScene" uid="uid://curbv1ml2g1m8" path="res://arrow.tscn" id="2_rrm7c"]
 [ext_resource type="PackedScene" path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" id="2_vb3no"]
 [ext_resource type="PackedScene" uid="uid://btf05hjpw6k05" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_physics_hand_low.tscn" id="3_7wvmd"]
 [ext_resource type="PackedScene" uid="uid://5rm8cacwjvo8" path="res://scenes/UI/RingWinUI.tscn" id="3_s2vu7"]
@@ -30,9 +29,6 @@ height = 1.5
 script = ExtResource("1_332ai")
 
 [node name="XROrigin3D" type="XROrigin3D" parent="."]
-
-[node name="arrow" parent="XROrigin3D" instance=ExtResource("2_rrm7c")]
-transform = Transform3D(0.105, 0, 0, 0, 0.105, 0, 0, 0, 0.105, -0.677424, 0.815685, -0.980146)
 
 [node name="Viewport2Din3D" parent="XROrigin3D" instance=ExtResource("2_2t5er")]
 transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0, -0.302353, -1.16164)

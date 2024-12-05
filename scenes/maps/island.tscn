@@ -86,7 +86,7 @@ transform = Transform3D(0.437539, 0, -0.899199, 0, 1, 0, 0.899199, 0, 0.437539, 
 transform = Transform3D(0.963517, -0.266557, -0.0241209, 0.0164708, 0.149006, -0.988699, 0.267139, 0.952232, 0.14796, -509.826, 108.669, 685.822)
 
 [node name="xr_gun" parent="." instance=ExtResource("37_gyfj4")]
-transform = Transform3D(0.437539, 0, -0.899199, 0, 1, 0, 0.899199, 0, 0.437539, -519.086, 105.52, 714.849)
+transform = Transform3D(0.437539, 0, -0.899199, 0, 1, 0, 0.899199, 0, 0.437539, -519.086, 105.52, 714.595)
 
 [node name="HTerrain" type="Node3D" parent="."]
 script = ExtResource("9_ga2al")
@@ -114,15 +114,17 @@ transform = Transform3D(0.437539, 0, -0.899199, 0, 1, 0, 0.899199, 0, 0.437539, 
 [node name="static" type="Node3D" parent="."]
 transform = Transform3D(0.437539, 0, -0.899199, 0, 1, 0, 0.899199, 0, 0.437539, -519.159, 106.213, 715.575)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="static"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.934692, -1.32803, -0.454712)
-layers = 4
-mesh = SubResource("BoxMesh_hnkfo")
-
 [node name="StaticBody3D" type="StaticBody3D" parent="static"]
+collision_layer = 7
+collision_mask = 7
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="static/StaticBody3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.934753, -1.32803, -0.454712)
+layers = 7
+mesh = SubResource("BoxMesh_hnkfo")
+skeleton = NodePath("../..")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="static/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
 shape = SubResource("BoxShape3D_fpbav")
 
 [node name="rings" type="Node3D" parent="."]
@@ -131,7 +133,7 @@ shape = SubResource("BoxShape3D_fpbav")
 transform = Transform3D(0.539669, 0, 0.305218, 0, 0.62, 0, -0.305218, 0, 0.539669, -546.299, 156.62, 479.39)
 
 [node name="ring13" parent="rings" instance=ExtResource("20_aajdk")]
-transform = Transform3D(0.610228, 0, -0.109643, 0, 0.62, 0, 0.109643, 0, 0.610228, -541.064, 124.135, 618.757)
+transform = Transform3D(0.610228, 0, -0.109643, 0, 0.62, 0, 0.109643, 0, 0.610228, -532.59, 115.22, 685.392)
 
 [node name="ring2" parent="rings" instance=ExtResource("20_aajdk")]
 transform = Transform3D(0.62, 0, 0, 0, 0.62, 0, 0, 0, 0.62, -924.224, 138.453, 112.76)
