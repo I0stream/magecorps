@@ -1,0 +1,59 @@
+[gd_scene load_steps=11 format=3 uid="uid://bnh38cyo3uvlt"]
+
+[ext_resource type="Shader" path="res://Shaders/stylized_fire.gdshader" id="1_cqd7o"]
+[ext_resource type="Texture2D" uid="uid://slq6hq6f6a2y" path="res://scenes/FX/fire/HoleNoise.png" id="2_rptd2"]
+[ext_resource type="Texture2D" uid="uid://5ej4yjj2cde4" path="res://scenes/FX/fire/FireMask.png" id="3_l1vgp"]
+
+[sub_resource type="ShaderMaterial" id="1"]
+render_priority = 0
+shader = ExtResource("1_cqd7o")
+shader_parameter/emission_intensity = 2.0
+shader_parameter/time_scale = 3.0
+shader_parameter/texture_scale = Vector2(1, 1)
+shader_parameter/edge_softness = 0.1
+shader_parameter/noise_texture = ExtResource("2_rptd2")
+shader_parameter/texture_mask = ExtResource("3_l1vgp")
+
+[sub_resource type="Gradient" id="Gradient_epbcl"]
+colors = PackedColorArray(0.6355, 0.201982, 0.0892513, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_kqoyn"]
+gradient = SubResource("Gradient_epbcl")
+
+[sub_resource type="Curve" id="4"]
+_data = [Vector2(0, 0), 0.0, 3.65289, 0, 0, Vector2(0.556561, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="5"]
+width = 128
+curve = SubResource("4")
+
+[sub_resource type="ParticleProcessMaterial" id="8"]
+lifetime_randomness = 0.81
+direction = Vector3(0, 1, 0)
+spread = 0.0
+initial_velocity_min = 0.5
+initial_velocity_max = 0.5
+gravity = Vector3(0, 0, 0)
+linear_accel_min = 4.0
+linear_accel_max = 4.0
+scale_max = 2.0
+scale_curve = SubResource("5")
+color = Color(0.877254, 0.338179, 0.177307, 1)
+color_ramp = SubResource("GradientTexture1D_kqoyn")
+
+[sub_resource type="QuadMesh" id="7"]
+size = Vector2(0.5, 0.5)
+
+[node name="fire" type="GPUParticles3D"]
+material_override = SubResource("1")
+cast_shadow = 0
+amount = 50
+randomness = 0.74
+draw_order = 1
+process_material = SubResource("8")
+draw_pass_1 = SubResource("7")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+light_color = Color(1, 0.434115, 0.372046, 1)
+light_energy = 2.0

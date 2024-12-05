@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dg34mhjho4puy"]
+
+[ext_resource type="Script" path="res://scripts/whisper.gd" id="1_on1a0"]
+
+[sub_resource type="AudioStreamMicrophone" id="AudioStreamMicrophone_xlaw8"]
+
+[node name="Whisper" type="Node"]
+script = ExtResource("1_on1a0")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamMicrophone_xlaw8")
+autoplay = true
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true

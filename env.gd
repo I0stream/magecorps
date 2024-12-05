@@ -1,0 +1,3 @@
+extends Node
+
+var gptKey = "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"

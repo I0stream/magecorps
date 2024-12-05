@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://c1givyg7gx47k"]
+
+[ext_resource type="Script" path="res://scripts/bullet.gd" id="1_mmlmk"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_irv8v"]
+radius = 0.02
+
+[sub_resource type="SphereMesh" id="SphereMesh_ndbgk"]
+radius = 0.02
+height = 0.04
+radial_segments = 10
+rings = 10
+
+[node name="bullet" type="Area3D"]
+script = ExtResource("1_mmlmk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 0, 0)
+shape = SubResource("CylinderShape3D_irv8v")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("SphereMesh_ndbgk")

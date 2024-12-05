@@ -1,0 +1,149 @@
+[gd_scene load_steps=24 format=3 uid="uid://dvyaldmbwnv6v"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_ifqao"]
+[ext_resource type="PackedScene" uid="uid://djmy6yqfool4i" path="res://models/castle.tscn" id="3_8hbqx"]
+[ext_resource type="PackedScene" uid="uid://8frqbaio0xhd" path="res://scenes/spawn_point.tscn" id="4_0tsmf"]
+[ext_resource type="PackedScene" uid="uid://s3hbnvduiooo" path="res://scenes/water.tscn" id="6_56aoe"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="9_ga2al"]
+[ext_resource type="Resource" path="res://terrainDataDirectory/data.hterrain" id="10_mj1dd"]
+[ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain_texture_set.gd" id="11_m88ox"]
+[ext_resource type="Texture2D" uid="uid://xoomss5sajgw" path="res://scenes/maps/island_slot0_albedo_bump.png" id="12_r1xs7"]
+[ext_resource type="Texture2D" uid="uid://ba20hegqsqhkr" path="res://scenes/maps/island_slot1_albedo_bump.png" id="13_v6ku3"]
+[ext_resource type="Texture2D" uid="uid://8gkrfi6fwrfg" path="res://scenes/maps/island_slot2_albedo_bump.png" id="14_alpuo"]
+[ext_resource type="Texture2D" uid="uid://dw1s00i3nuwc6" path="res://scenes/maps/island_slot3_albedo_bump.png" id="15_ae4qt"]
+[ext_resource type="Texture2D" uid="uid://bh02tgqugcalq" path="res://scenes/maps/island_slot0_normal_roughness.png" id="16_vr061"]
+[ext_resource type="Texture2D" uid="uid://df3r1dp5pyt0h" path="res://scenes/maps/island_slot1_normal_roughness.png" id="17_7ouwh"]
+[ext_resource type="Texture2D" uid="uid://bibj3ptelrlb1" path="res://scenes/maps/island_slot2_normal_roughness.png" id="18_ietrc"]
+[ext_resource type="Texture2D" uid="uid://c28871kagd61m" path="res://scenes/maps/island_slot3_normal_roughness.png" id="19_q7ncx"]
+[ext_resource type="PackedScene" uid="uid://mc738fuydi4q" path="res://scenes/ring.tscn" id="20_aajdk"]
+[ext_resource type="PackedScene" uid="uid://iqo5nxokcoml" path="res://scenes/target.tscn" id="36_0kpni"]
+[ext_resource type="PackedScene" uid="uid://del0qg7vq43xb" path="res://scenes/VR/xr_gun.tscn" id="37_gyfj4"]
+[ext_resource type="PackedScene" uid="uid://b5wesv1x5coo4" path="res://scenes/VR/box_pickable_object.tscn" id="39_0lppj"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_n6xv5"]
+
+[sub_resource type="Sky" id="Sky_kb41i"]
+sky_material = SubResource("ProceduralSkyMaterial_n6xv5")
+
+[sub_resource type="Environment" id="Environment_sr5ld"]
+background_mode = 2
+background_energy_multiplier = 3.0
+sky = SubResource("Sky_kb41i")
+ambient_light_source = 3
+ambient_light_color = Color(0.864675, 0.864675, 0.864675, 1)
+ambient_light_sky_contribution = 0.25
+ambient_light_energy = 3.82
+glow_strength = 0.84
+glow_hdr_threshold = 4.0
+glow_map_strength = 0.0
+fog_light_energy = 0.16
+adjustment_enabled = true
+adjustment_brightness = 0.86
+adjustment_contrast = 1.07
+adjustment_saturation = 1.28
+
+[sub_resource type="Resource" id="Resource_ylyjm"]
+script = ExtResource("11_m88ox")
+mode = 0
+textures = [[ExtResource("12_r1xs7"), ExtResource("13_v6ku3"), ExtResource("14_alpuo"), ExtResource("15_ae4qt")], [ExtResource("16_vr061"), ExtResource("17_7ouwh"), ExtResource("18_ietrc"), ExtResource("19_q7ncx")]]
+
+[node name="island" type="Node3D"]
+script = ExtResource("1_ifqao")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.999047, -0.0202485, -0.0386694, 0.032389, 0.93777, 0.345744, 0.0292622, -0.346667, 0.937532, -79.1015, 501.325, -20.4922)
+light_energy = 2.627
+shadow_enabled = true
+shadow_bias = 0.0
+shadow_normal_bias = 10.0
+shadow_transmittance_bias = 4.295
+shadow_blur = 1.443
+editor_only = true
+directional_shadow_mode = 0
+directional_shadow_fade_start = 1.0
+directional_shadow_max_distance = 1502.3
+
+[node name="water2" parent="." instance=ExtResource("6_56aoe")]
+transform = Transform3D(20000, 0, 0, 0, 20000, 0, 0, 0, 20000, 0, -1410.58, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_sr5ld")
+
+[node name="water" parent="." instance=ExtResource("6_56aoe")]
+transform = Transform3D(15000, 0, 0, 0, 15000, 0, 0, 0, 15000, -79.3234, 46.0707, 1.9636)
+
+[node name="castle" parent="." instance=ExtResource("3_8hbqx")]
+transform = Transform3D(0.437539, 0, -0.899199, 0, 1, 0, 0.899199, 0, 0.437539, -352.609, 108.926, 651.891)
+
+[node name="spawn_point" parent="." instance=ExtResource("4_0tsmf")]
+transform = Transform3D(0.437539, 0, -0.899199, 0, 1, 0, 0.899199, 0, 0.437539, -527.425, 104.29, 721.632)
+
+[node name="target" parent="." instance=ExtResource("36_0kpni")]
+transform = Transform3D(0.4349, -0.862719, -0.258026, -0.176533, 0.199299, -0.963907, 0.883005, 0.464754, -0.0656231, -509.826, 108.669, 685.822)
+
+[node name="xr_gun" parent="." instance=ExtResource("37_gyfj4")]
+transform = Transform3D(0.437539, 0, -0.899199, 0, 1, 0, 0.899199, 0, 0.437539, -519.174, 106.389, 715.792)
+
+[node name="PickableObject" parent="." instance=ExtResource("39_0lppj")]
+transform = Transform3D(0.437539, 0, -0.899199, 0, 1, 0, 0.899199, 0, 0.437539, -519.159, 105.717, 715.575)
+
+[node name="HTerrain" type="Node3D" parent="."]
+script = ExtResource("9_ga2al")
+map_scale = Vector3(1, 1.365, 1)
+centered = true
+_terrain_data = ExtResource("10_mj1dd")
+chunk_size = 32
+collision_enabled = true
+collision_layer = 1
+collision_mask = 1
+shader_type = "Classic4Lite"
+custom_shader = null
+custom_globalmap_shader = null
+texture_set = SubResource("Resource_ylyjm")
+render_layers = 1
+cast_shadow = 1
+shader_params/u_ground_uv_scale = 20.0
+shader_params/u_depth_blending = true
+shader_params/u_triplanar = false
+shader_params/u_tile_reduction = Vector4(0, 0, 0, 0)
+
+[node name="rings" type="Node3D" parent="."]
+
+[node name="ring" parent="rings" instance=ExtResource("20_aajdk")]
+transform = Transform3D(0.539669, 0, 0.305218, 0, 0.62, 0, -0.305218, 0, 0.539669, -546.299, 156.62, 479.39)
+
+[node name="ring13" parent="rings" instance=ExtResource("20_aajdk")]
+transform = Transform3D(0.610228, 0, -0.109643, 0, 0.62, 0, 0.109643, 0, 0.610228, -541.064, 124.135, 618.757)
+
+[node name="ring2" parent="rings" instance=ExtResource("20_aajdk")]
+transform = Transform3D(0.62, 0, 0, 0, 0.62, 0, 0, 0, 0.62, -924.224, 138.453, 112.76)
+
+[node name="ring3" parent="rings" instance=ExtResource("20_aajdk")]
+transform = Transform3D(0.364602, 0, -0.501463, 0, 0.62, 0, 0.501463, 0, 0.364602, -871.932, 78.3757, -393.114)
+
+[node name="ring4" parent="rings" instance=ExtResource("20_aajdk")]
+transform = Transform3D(0.216439, 0, 0.580994, 0, 0.62, 0, -0.580994, 0, 0.216439, 362.496, 89.5962, -390.89)
+
+[node name="ring12" parent="rings" instance=ExtResource("20_aajdk")]
+transform = Transform3D(0.0404744, 0, 0.618677, 0, 0.62, 0, -0.618677, 0, 0.0404744, -101.159, 76.3833, -390.89)
+
+[node name="ring5" parent="rings" instance=ExtResource("20_aajdk")]
+transform = Transform3D(0.6049, 0, 0.135998, 0, 0.62, 0, -0.135998, 0, 0.6049, 1446.48, 95.3486, -170.784)
+
+[node name="ring6" parent="rings" instance=ExtResource("20_aajdk")]
+transform = Transform3D(0.438896, 0, -0.437916, 0, 0.62, 0, 0.437916, 0, 0.438896, 1465.25, 101.067, 665.177)
+
+[node name="ring7" parent="rings" instance=ExtResource("20_aajdk")]
+transform = Transform3D(0.62, 0, 0, 0, 0.62, 0, 0, 0, 0.62, 535.914, 175.406, 907.516)
+
+[node name="ring11" parent="rings" instance=ExtResource("20_aajdk")]
+transform = Transform3D(0.412217, 0, -0.463117, 0, 0.62, 0, 0.463117, 0, 0.412217, 1096.31, 115.76, 907.516)
+
+[node name="ring8" parent="rings" instance=ExtResource("20_aajdk")]
+transform = Transform3D(-0.18848, 0, -0.590657, 0, 0.62, 0, 0.590657, 0, -0.18848, 417.316, 146.062, 1525.59)
+
+[node name="ring9" parent="rings" instance=ExtResource("20_aajdk")]
+transform = Transform3D(0.62, 0, 0, 0, 0.62, 0, 0, 0, 0.62, 120.315, 297.586, 1142.64)
+
+[node name="ring10" parent="rings" instance=ExtResource("20_aajdk")]
+transform = Transform3D(0.62, 0, 0, 0, 0.62, 0, 0, 0, 0.62, 45.4132, 376.035, 589.17)

@@ -1,0 +1,59 @@
+[gd_scene load_steps=11 format=3 uid="uid://djc5o0se38y3r"]
+
+[ext_resource type="Script" path="res://scripts/level.gd" id="1_fi6q5"]
+[ext_resource type="PackedScene" uid="uid://del0qg7vq43xb" path="res://scenes/VR/xr_gun.tscn" id="2_jypg3"]
+[ext_resource type="PackedScene" uid="uid://mc738fuydi4q" path="res://scenes/ring.tscn" id="4_tw7py"]
+[ext_resource type="PackedScene" uid="uid://b5wesv1x5coo4" path="res://scenes/VR/box_pickable_object.tscn" id="5_0554d"]
+[ext_resource type="PackedScene" uid="uid://8frqbaio0xhd" path="res://scenes/spawn_point.tscn" id="5_sf54t"]
+[ext_resource type="PackedScene" uid="uid://iqo5nxokcoml" path="res://scenes/target.tscn" id="6_3ih4p"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_84nfu"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0rkph"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_cn5mm"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_16a66"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_fi6q5")
+
+[node name="xr_gun" parent="." instance=ExtResource("2_jypg3")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.0538, 1.03959, 0.00436258)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.866025, 0.5, 0, -0.5, 0.866025, 0, 7, 2)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00069201, -2.38419e-07, 0.00533319)
+
+[node name="plane" type="MeshInstance3D" parent="StaticBody3D"]
+transform = Transform3D(7.755, 0, 0, 0, 7.75492, -0.0350558, 0, 0.0350558, 7.75492, 0, 0, 0)
+mesh = SubResource("PlaneMesh_84nfu")
+skeleton = NodePath("")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+transform = Transform3D(15, 0, 0, 0, 15, 0, 0, 0, 15, 0, -7.50254, 0)
+shape = SubResource("BoxShape3D_0rkph")
+
+[node name="ring" parent="." instance=ExtResource("4_tw7py")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.45908, -15.0155)
+
+[node name="PickableObject" parent="." instance=ExtResource("5_0554d")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.71493, 0.597582, 0)
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.29434, 0.484118, 0.040185)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2"]
+shape = SubResource("BoxShape3D_cn5mm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D2"]
+mesh = SubResource("BoxMesh_16a66")
+skeleton = NodePath("../..")
+
+[node name="spawn_point" parent="." instance=ExtResource("5_sf54t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.641373, 0)
+
+[node name="target" parent="." instance=ExtResource("6_3ih4p")]
+transform = Transform3D(1, 0, 0, 0, -0.133606, -0.991035, 0, 0.991035, -0.133606, 0, 1.89809, -6.90456)

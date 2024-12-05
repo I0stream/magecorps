@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://s3hbnvduiooo"]
+
+[ext_resource type="Material" uid="uid://gxo2u0cg6b0i" path="res://materials/RoystanToonWaterShader.tres" id="1_hxh1s"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_0iie7"]
+material = ExtResource("1_hxh1s")
+subdivide_width = 26
+subdivide_depth = 26
+
+[node name="water" type="Node3D"]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_hxh1s")
+mesh = SubResource("PlaneMesh_0iie7")

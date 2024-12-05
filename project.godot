@@ -1,0 +1,148 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="MageCorps"
+run/main_scene="res://scenes/maps/island.tscn"
+config/features=PackedStringArray("4.3", "Mobile")
+
+[audio]
+
+driver/enable_input=true
+
+[autoload]
+
+GameController="*res://scripts/gameController.gd"
+UiManager="*res://scripts/uiManager.gd"
+XRToolsUserSettings="*res://addons/godot-xr-tools/user_settings/user_settings.gd"
+XRToolsRumbleManager="*res://addons/godot-xr-tools/rumble/rumble_manager.gd"
+Env="*res://env.gd"
+Spells="*res://scripts/Spells.gd"
+WhisperGlobal="*res://scripts/whisper_global.gd"
+
+[display]
+
+window/vsync/vsync_mode=0
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/GPUTrail-main/plugin.cfg", "res://addons/godot-xr-tools/plugin.cfg", "res://addons/proton_scatter/plugin.cfg", "res://addons/zylann.hterrain/plugin.cfg")
+
+[global_group]
+
+grabbable="grabbable objects"
+
+[godot_xr_tools]
+
+input/default_snap_turning=false
+
+[input]
+
+grab_action={
+"deadzone": 0.5,
+"events": []
+}
+fly_action={
+"deadzone": 0.5,
+"events": []
+}
+spell_action={
+"deadzone": 0.5,
+"events": []
+}
+move_action={
+"deadzone": 0.5,
+"events": []
+}
+input_action={
+"deadzone": 0.5,
+"events": []
+}
+cancel_action={
+"deadzone": 0.5,
+"events": []
+}
+shoot_action={
+"deadzone": 0.5,
+"events": []
+}
+move_forward={
+"deadzone": 0.5,
+"events": []
+}
+move_back={
+"deadzone": 0.5,
+"events": []
+}
+move_left={
+"deadzone": 0.5,
+"events": []
+}
+move_right={
+"deadzone": 0.5,
+"events": []
+}
+
+[layer_names]
+
+3d_physics/layer_1="Static World"
+3d_physics/layer_2="Dynamic World"
+3d_physics/layer_3="Pickable Objects"
+3d_physics/layer_4="Wall Walking"
+3d_physics/layer_5="Grappling Target"
+3d_physics/layer_17="Held Objects"
+3d_physics/layer_18="Player Hand"
+3d_physics/layer_19="Grab Handles"
+3d_physics/layer_20="Player Body"
+3d_physics/layer_21="Pointable"
+3d_physics/layer_22="Hand Pose Area"
+3d_physics/layer_23="UI Objects"
+
+[physics]
+
+common/physics_ticks_per_second=90
+
+[rendering]
+
+renderer/rendering_method="mobile"
+textures/default_filters/anisotropic_filtering_level=1
+
+[shader_globals]
+
+wind_intensity={
+"type": "float",
+"value": 0.0
+}
+wind_direction={
+"type": "vec3",
+"value": Vector3(0, 0, 0)
+}
+player_position={
+"type": "vec3",
+"value": Vector3(0, 0, 0)
+}
+diffuse_curve={
+"type": "sampler2D",
+"value": ""
+}
+specular_smoothness={
+"type": "float",
+"value": 0.0
+}
+fresnel_smoothness={
+"type": "float",
+"value": 0.0
+}
+
+[xr]
+
+openxr/enabled=true
+shaders/enabled=true

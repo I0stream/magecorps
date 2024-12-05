@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdmc24utxiynj"]
+
+[ext_resource type="Material" uid="uid://u347f5cxcf8w" path="res://materials/water_mat.tres" id="1_gak08"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_kfexd"]
+
+[node name="ocean" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.93457, 0)
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.97545, 0.220221, 0, -0.220221, 0.97545, 0, 0.614696, 2.34998)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+material_override = ExtResource("1_gak08")
+mesh = SubResource("PlaneMesh_kfexd")
+surface_material_override/0 = ExtResource("1_gak08")

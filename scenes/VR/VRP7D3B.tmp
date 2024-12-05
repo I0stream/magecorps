@@ -1,0 +1,54 @@
+[gd_scene load_steps=8 format=3 uid="uid://vx8upnhiwacw"]
+
+[ext_resource type="Script" path="res://scripts/vr_player_controller.gd" id="1_lxhxu"]
+[ext_resource type="Script" path="res://scripts/hand.gd" id="2_2rgab"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_cyp34"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_btj8g"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ptef8"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_8iwbc"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_iobt0"]
+
+[node name="VrPlayerController" type="Node3D"]
+script = ExtResource("1_lxhxu")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.38003, 0)
+
+[node name="left" type="XRController3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.659621, 0.675935, -1.09467)
+tracker = &"left_hand"
+script = ExtResource("2_2rgab")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/left"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+mesh = SubResource("BoxMesh_cyp34")
+
+[node name="Area3D" type="Area3D" parent="XROrigin3D/left"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/left/Area3D"]
+shape = SubResource("SphereShape3D_btj8g")
+
+[node name="right" type="XRController3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.722378, 0.675935, -1.13003)
+tracker = &"right_hand"
+script = ExtResource("2_2rgab")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/right"]
+transform = Transform3D(0.3, 0, 0, 0, 0.3, 0, 0, 0, 0.3, 0, 0, 0)
+mesh = SubResource("BoxMesh_ptef8")
+
+[node name="Area3D" type="Area3D" parent="XROrigin3D/right"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/right/Area3D"]
+shape = SubResource("SphereShape3D_8iwbc")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.03123, 0)
+shape = SubResource("CapsuleShape3D_iobt0")

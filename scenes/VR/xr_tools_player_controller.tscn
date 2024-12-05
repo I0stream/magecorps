@@ -1,0 +1,104 @@
+[gd_scene load_steps=20 format=3 uid="uid://boiktqix7ciam"]
+
+[ext_resource type="Script" path="res://scripts/xr_tools_player_controller.gd" id="1_332ai"]
+[ext_resource type="PackedScene" uid="uid://clujaf3u776a3" path="res://addons/godot-xr-tools/objects/viewport_2d_in_3d.tscn" id="2_2t5er"]
+[ext_resource type="PackedScene" uid="uid://curbv1ml2g1m8" path="res://arrow.tscn" id="2_rrm7c"]
+[ext_resource type="PackedScene" path="res://addons/godot-xr-tools/misc/vr_common_shader_cache.tscn" id="2_vb3no"]
+[ext_resource type="PackedScene" uid="uid://btf05hjpw6k05" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_physics_hand_low.tscn" id="3_7wvmd"]
+[ext_resource type="PackedScene" uid="uid://5rm8cacwjvo8" path="res://scenes/UI/RingWinUI.tscn" id="3_s2vu7"]
+[ext_resource type="Material" uid="uid://dogla70w8hvo8" path="res://addons/godot-xr-tools/hands/materials/glove_caucasian_dark_camo.tres" id="4_ldu4a"]
+[ext_resource type="PackedScene" uid="uid://cy03d57iyrci" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_physics_hand.tscn" id="5_afrp1"]
+[ext_resource type="PackedScene" uid="uid://bl2nuu3qhlb5k" path="res://addons/godot-xr-tools/functions/movement_direct.tscn" id="7_r0tk6"]
+[ext_resource type="PackedScene" uid="uid://b4ysuy43poobf" path="res://addons/godot-xr-tools/functions/function_pickup.tscn" id="8_u3pge"]
+[ext_resource type="Script" path="res://addons/godot-xr-tools/functions/movement_flight.gd" id="9_xfxuj"]
+[ext_resource type="PackedScene" uid="uid://b6bk2pj8vbj28" path="res://addons/godot-xr-tools/functions/movement_turn.tscn" id="10_cvscj"]
+[ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="11_k3t6t"]
+[ext_resource type="PackedScene" uid="uid://diyu06cw06syv" path="res://addons/godot-xr-tools/player/player_body.tscn" id="12_o6m5r"]
+[ext_resource type="PackedScene" uid="uid://ce7vysyvondf8" path="res://addons/godot-xr-tools/objects/snap_zone.tscn" id="14_thymd"]
+[ext_resource type="Script" path="res://scripts/player_state_machine.gd" id="15_bluox"]
+[ext_resource type="PackedScene" uid="uid://c0n65l6iyq16" path="res://scenes/VR/health.tscn" id="16_ktg88"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_e30a5"]
+radius = 0.1
+height = 1.0
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_gjl32"]
+radius = 0.2
+height = 1.5
+
+[node name="XRToolsPlayerController" type="Node3D"]
+script = ExtResource("1_332ai")
+
+[node name="XROrigin3D" type="XROrigin3D" parent="."]
+
+[node name="arrow" parent="XROrigin3D" instance=ExtResource("2_rrm7c")]
+transform = Transform3D(0.105, 0, 0, 0, 0.105, 0, 0, 0, 0.105, -0.677424, 0.815685, -0.980146)
+
+[node name="Viewport2Din3D" parent="XROrigin3D" instance=ExtResource("2_2t5er")]
+transform = Transform3D(0.001, 0, 0, 0, 0.001, 0, 0, 0, 0.001, 0, -0.302353, -1.16164)
+visible = false
+screen_size = Vector2(640, 360)
+scene = ExtResource("3_s2vu7")
+viewport_size = Vector2(640, 360)
+scene_properties_keys = PackedStringArray()
+
+[node name="XRCamera3D" type="XRCamera3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09773, -0.211077)
+v_offset = -0.295
+
+[node name="VRCommonShaderCache" parent="XROrigin3D/XRCamera3D" instance=ExtResource("2_vb3no")]
+
+[node name="XRController3D_left" type="XRController3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.377389, 0.805472, -0.349996)
+tracker = &"left_hand"
+
+[node name="LeftPhysicsHand" parent="XROrigin3D/XRController3D_left" instance=ExtResource("5_afrp1")]
+hand_material_override = ExtResource("4_ldu4a")
+
+[node name="MovementDirect" parent="XROrigin3D/XRController3D_left" instance=ExtResource("7_r0tk6")]
+strafe = true
+
+[node name="FunctionPickup" parent="XROrigin3D/XRController3D_left" instance=ExtResource("8_u3pge")]
+
+[node name="MovementFlight" type="Node" parent="XROrigin3D/XRController3D_left" groups=["movement_providers"]]
+script = ExtResource("9_xfxuj")
+
+[node name="XRController3D_right" type="XRController3D" parent="XROrigin3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.411434, 0.805472, -0.349996)
+tracker = &"right_hand"
+
+[node name="RightPhysicsHand" parent="XROrigin3D/XRController3D_right" instance=ExtResource("3_7wvmd")]
+hand_material_override = ExtResource("4_ldu4a")
+
+[node name="MovementTurn" parent="XROrigin3D/XRController3D_right" instance=ExtResource("10_cvscj")]
+
+[node name="FunctionPickup" parent="XROrigin3D/XRController3D_right" instance=ExtResource("8_u3pge")]
+
+[node name="FunctionPointer" parent="XROrigin3D/XRController3D_right" instance=ExtResource("11_k3t6t")]
+visible = false
+
+[node name="PlayerBody" parent="XROrigin3D" instance=ExtResource("12_o6m5r")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.269421, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="XROrigin3D/PlayerBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.459757, 0)
+shape = SubResource("CapsuleShape3D_e30a5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="XROrigin3D/PlayerBody"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.500587, 0)
+visible = false
+mesh = SubResource("CapsuleMesh_gjl32")
+
+[node name="SnapZone" parent="XROrigin3D/PlayerBody/MeshInstance3D" instance=ExtResource("14_thymd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0697951, -0.216668, -0.183211)
+grab_distance = 0.13
+
+[node name="StateMachine" type="Node3D" parent="."]
+script = ExtResource("15_bluox")
+
+[node name="SoundPlayer" type="AudioStreamPlayer3D" parent="."]
+
+[node name="health" parent="." instance=ExtResource("16_ktg88")]
+
+[connection signal="flight_finished" from="XROrigin3D/XRController3D_left/MovementFlight" to="StateMachine" method="_on_movement_flight_flight_finished"]
+[connection signal="flight_started" from="XROrigin3D/XRController3D_left/MovementFlight" to="StateMachine" method="_on_movement_flight_flight_started"]

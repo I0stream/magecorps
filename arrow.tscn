@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://curbv1ml2g1m8"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_c2emc"]
+top_radius = 0.0
+height = 1.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xkcb3"]
+top_radius = 0.25
+bottom_radius = 0.25
+height = 1.5
+
+[node name="Node3D" type="Node3D"]
+transform = Transform3D(0.335, 0, 0, 0, 0.335, 0, 0, 0, 0.335, 0, 0.00653577, 0)
+
+[node name="head" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.567125, 0)
+mesh = SubResource("CylinderMesh_c2emc")
+skeleton = NodePath("../tail")
+
+[node name="tail" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.62926, 0)
+mesh = SubResource("CylinderMesh_xkcb3")
