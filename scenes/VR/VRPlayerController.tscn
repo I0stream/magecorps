@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://vx8upnhiwacw"]
+[gd_scene load_steps=11 format=3 uid="uid://vx8upnhiwacw"]
 
 [ext_resource type="Script" path="res://scripts/vr_player_controller.gd" id="1_lxhxu"]
 [ext_resource type="Script" path="res://scripts/hand.gd" id="2_2rgab"]
@@ -7,7 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://cy03d57iyrci" path="res://addons/godot-xr-tools/hands/scenes/highpoly/left_physics_hand.tscn" id="5_5khrq"]
 [ext_resource type="PackedScene" uid="uid://cqhw276realc" path="res://addons/godot-xr-tools/functions/function_pointer.tscn" id="6_kb4sd"]
 [ext_resource type="PackedScene" uid="uid://btf05hjpw6k05" path="res://addons/godot-xr-tools/hands/scenes/lowpoly/right_physics_hand_low.tscn" id="7_nbxee"]
-[ext_resource type="PackedScene" uid="uid://c6yxgd8jjdn3l" path="res://addons/textify_-_speech2text_[huggingface_whisper_api_wrapper]/textify.tscn" id="8_21wgv"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_btj8g"]
 
@@ -72,5 +71,3 @@ laser_length = 1
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.031, 0)
 shape = SubResource("CapsuleShape3D_iobt0")
-
-[node name="textify" parent="." instance=ExtResource("8_21wgv")]

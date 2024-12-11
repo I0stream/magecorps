@@ -11,7 +11,6 @@ var elapsed_time: float = 0.0
 
 func _ready():
 	# Start a timer to destroy the bullet after its lifetime
-	
 	await get_tree().create_timer(lifetime).timeout
 	queue_free()
 

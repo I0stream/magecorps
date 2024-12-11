@@ -1,7 +1,6 @@
-[gd_scene load_steps=26 format=3 uid="uid://dvyaldmbwnv6v"]
+[gd_scene load_steps=24 format=3 uid="uid://dvyaldmbwnv6v"]
 
 [ext_resource type="Script" path="res://scripts/level.gd" id="1_ifqao"]
-[ext_resource type="PackedScene" uid="uid://djmy6yqfool4i" path="res://models/castle.tscn" id="3_8hbqx"]
 [ext_resource type="PackedScene" uid="uid://8frqbaio0xhd" path="res://scenes/spawn_point.tscn" id="4_0tsmf"]
 [ext_resource type="PackedScene" uid="uid://s3hbnvduiooo" path="res://scenes/water.tscn" id="6_56aoe"]
 [ext_resource type="Script" path="res://addons/zylann.hterrain/hterrain.gd" id="9_ga2al"]
@@ -13,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://dw1s00i3nuwc6" path="res://scenes/maps/island_slot3_albedo_bump.png" id="15_ae4qt"]
 [ext_resource type="Texture2D" uid="uid://bh02tgqugcalq" path="res://scenes/maps/island_slot0_normal_roughness.png" id="16_vr061"]
 [ext_resource type="Texture2D" uid="uid://df3r1dp5pyt0h" path="res://scenes/maps/island_slot1_normal_roughness.png" id="17_7ouwh"]
+[ext_resource type="PackedScene" uid="uid://doipqmfampqth" path="res://staticObject.tscn" id="17_eo12j"]
 [ext_resource type="Texture2D" uid="uid://bibj3ptelrlb1" path="res://scenes/maps/island_slot2_normal_roughness.png" id="18_ietrc"]
 [ext_resource type="Texture2D" uid="uid://c28871kagd61m" path="res://scenes/maps/island_slot3_normal_roughness.png" id="19_q7ncx"]
 [ext_resource type="PackedScene" uid="uid://mc738fuydi4q" path="res://scenes/ring.tscn" id="20_aajdk"]
@@ -47,10 +47,6 @@ script = ExtResource("11_m88ox")
 mode = 0
 textures = [[ExtResource("12_r1xs7"), ExtResource("13_v6ku3"), ExtResource("14_alpuo"), ExtResource("15_ae4qt")], [ExtResource("16_vr061"), ExtResource("17_7ouwh"), ExtResource("18_ietrc"), ExtResource("19_q7ncx")]]
 
-[sub_resource type="BoxMesh" id="BoxMesh_hnkfo"]
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_fpbav"]
-
 [node name="island" type="Node3D"]
 script = ExtResource("1_ifqao")
 
@@ -67,26 +63,20 @@ directional_shadow_mode = 0
 directional_shadow_fade_start = 1.0
 directional_shadow_max_distance = 1502.3
 
-[node name="water2" parent="." instance=ExtResource("6_56aoe")]
-transform = Transform3D(20000, 0, 0, 0, 20000, 0, 0, 0, 20000, 0, -1410.58, 0)
-
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_sr5ld")
 
 [node name="water" parent="." instance=ExtResource("6_56aoe")]
 transform = Transform3D(15000, 0, 0, 0, 15000, 0, 0, 0, 15000, -79.3234, 46.0707, 1.9636)
 
-[node name="castle" parent="." instance=ExtResource("3_8hbqx")]
-transform = Transform3D(0.437539, 0, -0.899199, 0, 1, 0, 0.899199, 0, 0.437539, -352.609, 108.926, 651.891)
-
 [node name="spawn_point" parent="." instance=ExtResource("4_0tsmf")]
 transform = Transform3D(0.437539, 0, -0.899199, 0, 1, 0, 0.899199, 0, 0.437539, -522.605, 104.29, 715.932)
 
 [node name="target" parent="." instance=ExtResource("36_0kpni")]
-transform = Transform3D(0.963517, -0.266557, -0.0241209, 0.0164708, 0.149006, -0.988699, 0.267139, 0.952232, 0.14796, -509.826, 108.669, 685.822)
+transform = Transform3D(0.586487, -0.802297, -0.111143, 0.0164708, 0.149006, -0.988699, 0.809791, 0.578029, 0.100605, -509.826, 107.181, 703.572)
 
 [node name="xr_gun" parent="." instance=ExtResource("37_gyfj4")]
-transform = Transform3D(0.437539, 0, -0.899199, 0, 1, 0, 0.899199, 0, 0.437539, -519.086, 105.52, 714.595)
+transform = Transform3D(0.437539, 0, -0.899199, 0, 1, 0, 0.899199, 0, 0.437539, -519.243, 105.516, 716.034)
 
 [node name="HTerrain" type="Node3D" parent="."]
 script = ExtResource("9_ga2al")
@@ -108,24 +98,11 @@ shader_params/u_depth_blending = true
 shader_params/u_triplanar = false
 shader_params/u_tile_reduction = Vector4(0, 0, 0, 0)
 
+[node name="Node3D" parent="." instance=ExtResource("17_eo12j")]
+transform = Transform3D(0.437539, 0, -0.899199, 0, 1, 0, 0.899199, 0, 0.437539, -519.286, 104.786, 716.255)
+
 [node name="PickableObject" parent="." instance=ExtResource("39_0lppj")]
-transform = Transform3D(0.437539, 0, -0.899199, 0, 1, 0, 0.899199, 0, 0.437539, -519.159, 105.529, 715.756)
-
-[node name="static" type="Node3D" parent="."]
-transform = Transform3D(0.437539, 0, -0.899199, 0, 1, 0, 0.899199, 0, 0.437539, -519.159, 106.213, 715.575)
-
-[node name="StaticBody3D" type="StaticBody3D" parent="static"]
-collision_layer = 7
-collision_mask = 7
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="static/StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.934753, -1.32803, -0.454712)
-layers = 7
-mesh = SubResource("BoxMesh_hnkfo")
-skeleton = NodePath("../..")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="static/StaticBody3D"]
-shape = SubResource("BoxShape3D_fpbav")
+transform = Transform3D(0.437539, 0, -0.899199, 0, 1, 0, 0.899199, 0, 0.437539, -519.287, 104.723, 714.725)
 
 [node name="rings" type="Node3D" parent="."]
 
